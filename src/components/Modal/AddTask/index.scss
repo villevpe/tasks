@@ -1,0 +1,29 @@
+$buttonBackgroundColor: #00c4ff;
+$buttonTextColor: white;
+.add-task-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        textarea {
+            font-size: 1.2em;
+            width: 90%;
+            height: 20vmin;
+            display: flex;
+            border: 1px solid #d0d0d0;
+            padding: 10px;
+            &:active,
+            &:focus {
+                outline: 0;
+            }
+        }
+        .btn {
+            margin-top: 2em;
+        }
+    }
+}
