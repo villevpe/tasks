@@ -17,6 +17,8 @@ const tasks: Reducer<{}> = (state: State.Tasks = initialState, action: Actions.T
             ];
         case ACTIONS.TOGGLE_TASK:
             return state.map(task => (task.id === action.payload.id) ? { ...task, completed: !task.completed } : task);
+        case ACTIONS.REMOVE_TASK:
+            return state.filter(task => task.id !== action.payload.id);
         default:
             return state;
     }

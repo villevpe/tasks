@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './index.scss';
 import { AddTask } from './AddTask';
-import { ToggleModal, ToggleModalProps } from './Toggle';
+import { ActionButton, ActionButtonProps } from './Toggle';
 import { closeModal } from '../../actions';
 import { connect } from 'react-redux';
 import { State } from '../../reducers';
@@ -10,7 +10,7 @@ const ModalComponents = {
     'ADD_TASK': AddTask
 };
 
-const closeModalProps: ToggleModalProps = {
+const closeModalProps: ActionButtonProps = {
     className: 'close',
     text: '✕',
     action: closeModal
@@ -27,7 +27,7 @@ const ModalComponent: React.StatelessComponent<State.Modal> = ({ modalType, moda
             <div className="inner">
                 <div className="header">
                     <h3>{header}</h3>
-                    <ToggleModal {...closeModalProps} />
+                    <ActionButton {...closeModalProps} />
                 </div>
                 <Component {...otherProps} />
             </div>

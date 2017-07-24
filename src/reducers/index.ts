@@ -7,7 +7,7 @@ import { MODAL_TYPES } from '../actions';
 export namespace State {
 
     export interface Task {
-        id: number;
+        id: string;
         completed?: boolean;
         text?: string;
     }

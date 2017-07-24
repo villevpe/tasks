@@ -1,13 +1,16 @@
 import { State } from '../reducers/index';
 import { Action } from 'redux';
-
-let taskId = 0;
+import * as uuid from 'uuid/v4';
 
 export namespace Actions {
 
     export interface Task extends Action {
-        type: ACTIONS.ADD_TASK | ACTIONS.TOGGLE_TASK;
+        type: ACTIONS.ADD_TASK | ACTIONS.TOGGLE_TASK | ACTIONS.REMOVE_TASK;
         payload: State.Task;
+    }
+
+    export interface AllTasks extends Action {
+        type: ACTIONS.REMOVE_ALL_TASKS;
     }
 
     export interface VisibilityFilter extends Action {
@@ -28,6 +31,8 @@ export namespace Actions {
 export enum ACTIONS {
     ADD_TASK = 'ADD_TASK',
     TOGGLE_TASK = 'TOGGLE_TASK',
+    REMOVE_TASK = 'REMOVE_TASK',
+    REMOVE_ALL_TASKS = 'REMOVE_ALL_TASKS',
     SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER',
     OPEN_ADD_TASK_MODAL = 'OPEN_ADD_TASK_MODAL'
 }
@@ -51,7 +56,7 @@ export const addTask = (text: string): Actions.Task => {
     return {
         type: ACTIONS.ADD_TASK,
         payload: {
-            id: taskId++,
+            id: uuid(),
             completed: false,
             text: text
         }
@@ -67,12 +72,27 @@ export const setVisibilityFilter = (filter: string): Actions.VisibilityFilter =>
     };
 };
 
-export const toggleTask = (id: number): Actions.Task => {
+export const toggleTask = (id: string): Actions.Task => {
     return {
         type: ACTIONS.TOGGLE_TASK,
         payload: {
             id: id
         }
+    };
+};
+
+export const deleteTask = (id: string): Actions.Task => {
+    return {
+        type: ACTIONS.REMOVE_TASK,
+        payload: {
+            id: id
+        }
+    };
+};
+
+export const deleteAllTasks = (): Actions.AllTasks => {
+    return {
+        type: ACTIONS.REMOVE_ALL_TASKS
     };
 };
 

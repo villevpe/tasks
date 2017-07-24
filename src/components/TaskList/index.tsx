@@ -2,23 +2,25 @@ import * as React from 'react';
 import Task from './Task';
 import { State } from '../../reducers';
 import { connect } from 'react-redux';
-import { toggleTask, FILTERS } from '../../actions';
+import { toggleTask, deleteTask, FILTERS } from '../../actions';
 import './index.scss';
 
 export type TaskListDispatch = {
     onTaskClick: Function;
+    onDeleteClick: Function;
 };
 
 export type TaskListState = {
     tasks: State.Task[];
 };
 
-const TaskList: React.SFC<TaskListState & TaskListDispatch> = ({ tasks, onTaskClick }) => (
+const TaskList: React.SFC<TaskListState & TaskListDispatch> = ({ tasks, onTaskClick, onDeleteClick }) => (
     <ul>
         {tasks.map(task => (
             <Task 
                 key={task.id}
                 onClick={() => onTaskClick(task.id)}
+                onDeleteClick={() => onDeleteClick(task.id)}
                 {...task}
             />
         ))}
@@ -41,7 +43,8 @@ const mapStateToProps = (state: State.Store): TaskListState => ({
 });
 
 const mapDispatchToProps = (dispatch: Function): TaskListDispatch => ({
-    onTaskClick: (id: number) => dispatch(toggleTask(id))
+    onTaskClick: (id: string) => dispatch(toggleTask(id)),
+    onDeleteClick: (id: string) => dispatch(deleteTask(id))
 });
 
 export const VisibileTaskList = connect(

@@ -18,8 +18,8 @@
     }
     &.add-task {
         border: 1px solid #0083b9;
-        width: 100%;
-        max-width: 20vmax;
+        width: 50%;
+        max-width: 300px;
     }
     &.filter {
         color: #CCC;
@@ -35,5 +35,11 @@
     &:active,
     &:focus {
         outline: 0;
+    }
+
+    &.delete-all {
+        background-color: #c76363;
+        width: 50%;
+        max-width: 300px;
     }
 }
