@@ -7,7 +7,10 @@
 /coverage
 
 # production
-/build
+/dist/index.js
+/dist/index.js.map
+/dist/style.css
+/dist/style.css.map
 
 # misc
 .DS_Store

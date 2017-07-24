@@ -5,12 +5,8 @@ import * as uuid from 'uuid/v4';
 export namespace Actions {
 
     export interface Task extends Action {
-        type: ACTIONS.ADD_TASK | ACTIONS.TOGGLE_TASK | ACTIONS.REMOVE_TASK;
+        type: ACTIONS.ADD_TASK | ACTIONS.TOGGLE_TASK | ACTIONS.REMOVE_TASK | ACTIONS.REMOVE_ALL_TASKS;
         payload: State.Task;
-    }
-
-    export interface AllTasks extends Action {
-        type: ACTIONS.REMOVE_ALL_TASKS;
     }
 
     export interface VisibilityFilter extends Action {
@@ -90,9 +86,10 @@ export const deleteTask = (id: string): Actions.Task => {
     };
 };
 
-export const deleteAllTasks = (): Actions.AllTasks => {
+export const deleteAllTasks = (): Actions.Task => {
     return {
-        type: ACTIONS.REMOVE_ALL_TASKS
+        type: ACTIONS.REMOVE_ALL_TASKS,
+        payload: {}
     };
 };
 

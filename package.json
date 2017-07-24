@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "compression": "^1.7.0",
     "debounce": "^1.0.2",
+    "express": "^4.15.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "^3.0.0-beta.7",
@@ -44,9 +46,7 @@
   "scripts": {
     "dev": "webpack-dev-server --history-api-fallback --content-base ./src --open --hot",
     "build:dev": "webpack --progress --color --display-error-details",
-    "build:prod": "webpack -p",
-    "test": "jest",
-    "test:watch": "npm test -- --watch"
-  },
-  "false": {}
+    "build:prod": "webpack -p --config webpack.config.prod.js",
+    "launch": "npm run build:prod && node ./server/index.js"
+  }
 }
