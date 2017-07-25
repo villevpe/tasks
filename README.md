@@ -4,7 +4,7 @@ Simple todo / task editor built with React, Redux & TypeScript. Uses Webpack for
 
 ### To Do:
 * Unit tests
-* Simple server in favor of Webpack dev server
+* ~Simple server in favor of Webpack dev server~
 
 ## Installation
 
@@ -13,7 +13,8 @@ Clone or download the project, then
 ```sh
 # Install dependencies
 $ npm i
-# Launch Webpack dev server
-$ npm run dev
+# Launch
+$ npm run start
+# Open localhost:3000 in browser
 
 ```
