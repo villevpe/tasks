@@ -1,10 +1,7 @@
 # Tasks
 
-Simple todo / task editor built with React, Redux & TypeScript. Uses Webpack for bundling and Sass for styles.
-
-### To Do:
-* Unit tests
-* ~Simple server in favor of Webpack dev server~
+Simple todo / task editor built with React, Redux & TypeScript. Uses Webpack for bundling and Sass for styles. 
+See it in action [here](http://alltasks.herokuapp.com/).
 
 ## Installation
 
@@ -15,6 +12,5 @@ Clone or download the project, then
 $ npm i
 # Launch
 $ npm run start
-# Open localhost:3000 in browser
-
+# Open localhost:3000 in your browser
 ```

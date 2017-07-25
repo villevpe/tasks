@@ -22,7 +22,7 @@ const App = () => (
     <div className="app">
         <Modal />
         <div className="app-container">
-            <h1>Your Tasks</h1>
+            <h1>Tasks</h1>
             <VisibilityFilter />
             <VisibileTaskList />
             <div className="actions">

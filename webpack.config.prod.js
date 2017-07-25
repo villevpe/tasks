@@ -58,9 +58,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin(),
-        // do not emit compiled assets that include errors
-
         new webpack.optimize.ModuleConcatenationPlugin(),
         new ExtractTextPlugin({
             filename: 'style.css',
