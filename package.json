@@ -46,7 +46,7 @@
   "scripts": {
     "dev": "webpack-dev-server --history-api-fallback --content-base ./src --open --hot",
     "build:dev": "webpack --progress --color --display-error-details",
-    "build:prod": "webpack -p --config webpack.config.prod.js",
-    "launch": "npm run build:prod && node ./server/index.js"
+    "build": "webpack -p --config webpack.config.prod.js --progress",
+    "start": "node ./server/index.js"
   }
 }
