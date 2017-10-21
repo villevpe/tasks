@@ -1,24 +1,24 @@
-import { State } from '../reducers/index';
-import { Action } from 'redux';
-import * as uuid from 'uuid/v4';
+import { State } from '../reducers/index'
+import { Action } from 'redux'
+import * as uuid from 'uuid/v4'
 
 export namespace Actions {
 
     export interface Task extends Action {
-        type: ACTIONS.ADD_TASK | ACTIONS.TOGGLE_TASK | ACTIONS.REMOVE_TASK | ACTIONS.REMOVE_ALL_TASKS;
-        payload: State.Task;
+        type: ACTIONS.ADD_TASK | ACTIONS.TOGGLE_TASK | ACTIONS.REMOVE_TASK | ACTIONS.REMOVE_ALL_TASKS
+        payload: State.Task
     }
 
     export interface VisibilityFilter extends Action {
-        type: ACTIONS.SET_VISIBILITY_FILTER;
+        type: ACTIONS.SET_VISIBILITY_FILTER
         payload: {
             filter: string
-        };
+        }
     }
 
     export interface Modal extends Action {
-        type: MODAL_ACTIONS;
-        payload: State.Modal;
+        type: MODAL_ACTIONS
+        payload: State.Modal
     }
 }
 
@@ -56,8 +56,8 @@ export const addTask = (text: string): Actions.Task => {
             completed: false,
             text: text
         }
-    };
-};
+    }
+}
 
 export const setVisibilityFilter = (filter: string): Actions.VisibilityFilter => {
     return {
@@ -65,8 +65,8 @@ export const setVisibilityFilter = (filter: string): Actions.VisibilityFilter =>
         payload: {
             filter: filter
         }
-    };
-};
+    }
+}
 
 export const toggleTask = (id: string): Actions.Task => {
     return {
@@ -74,8 +74,8 @@ export const toggleTask = (id: string): Actions.Task => {
         payload: {
             id: id
         }
-    };
-};
+    }
+}
 
 export const deleteTask = (id: string): Actions.Task => {
     return {
@@ -83,15 +83,15 @@ export const deleteTask = (id: string): Actions.Task => {
         payload: {
             id: id
         }
-    };
-};
+    }
+}
 
 export const deleteAllTasks = (): Actions.Task => {
     return {
         type: ACTIONS.REMOVE_ALL_TASKS,
         payload: {}
-    };
-};
+    }
+}
 
 export const openAddTaskModal = (): Actions.Modal => {
     return {
@@ -102,8 +102,8 @@ export const openAddTaskModal = (): Actions.Modal => {
                 header: 'Add Task'
             }
         }
-    };
-};
+    }
+}
 
 export const closeModal = (): Actions.Modal => {
     return {
@@ -114,5 +114,5 @@ export const closeModal = (): Actions.Modal => {
                 header: null
             }
         }
-    };
-};
+    }
+}
