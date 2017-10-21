@@ -1,20 +1,20 @@
-import { ACTIONS, Actions, FILTERS } from '../actions';
-import { Reducer } from 'redux';
-import { State } from './index';
+import { ACTIONS, Actions, FILTERS } from '../actions'
+import { Reducer } from 'redux'
+import { State } from './index'
 
-type VFState = State.VisibilityFilter;
+type VFState = State.VisibilityFilter
 
 const initialState: VFState = {
     filter: FILTERS.SHOW_ALL
-};
+}
 
 const visibilityFilter: Reducer<{}> = (state: VFState = initialState, action: Actions.VisibilityFilter): VFState => {
     switch (action.type) {
         case ACTIONS.SET_VISIBILITY_FILTER:
-            return action.payload;
+            return action.payload
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default visibilityFilter;
+export default visibilityFilter

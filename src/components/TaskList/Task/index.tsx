@@ -1,19 +1,19 @@
-import * as React from 'react';
-import * as classNames from 'classnames';
-import './index.scss';
+import * as React from 'react'
+import * as classNames from 'classnames'
+import './index.scss'
 
 interface TaskComponentProps {
-    onClick: React.MouseEventHandler<HTMLLIElement>;
-    onDeleteClick: React.MouseEventHandler<HTMLLIElement>;
-    completed?: boolean;
-    text?: string;
+    onClick: React.MouseEventHandler<HTMLLIElement>
+    onDeleteClick: React.MouseEventHandler<HTMLLIElement>
+    completed?: boolean
+    text?: string
 }
 
 const Task: React.SFC<TaskComponentProps> = ({ onClick, onDeleteClick, completed, text }) => {
     let classes = classNames({
         'item': true,
         'completed': completed
-    });
+    })
 
     return (
         <li
@@ -29,7 +29,7 @@ const Task: React.SFC<TaskComponentProps> = ({ onClick, onDeleteClick, completed
                 </span>
             : ''}
         </li>
-    );
-};
+    )
+}
 
-export default Task;
+export default Task

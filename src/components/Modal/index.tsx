@@ -1,27 +1,27 @@
-import * as React from 'react';
-import './index.scss';
-import { AddTask } from './AddTask';
-import { ActionButton, ActionButtonProps } from './Toggle';
-import { closeModal } from '../../actions';
-import { connect } from 'react-redux';
-import { State } from '../../reducers';
+import * as React from 'react'
+import './index.scss'
+import { AddTask } from './AddTask'
+import { ActionButton, ActionButtonProps } from './Toggle'
+import { closeModal } from '../../actions'
+import { connect } from 'react-redux'
+import { State } from '../../reducers'
 
 const ModalComponents = {
     'ADD_TASK': AddTask
-};
+}
 
 const closeModalProps: ActionButtonProps = {
     className: 'close',
     text: '✕',
     action: closeModal
-};
+}
 
 const ModalComponent: React.StatelessComponent<State.Modal> = ({ modalType, modalProps }) => {
     if (!modalType) {
-        return null;
+        return null
     }
-    const Component = ModalComponents[modalType];
-    const { header, ...otherProps } = modalProps;
+    const Component = ModalComponents[modalType]
+    const { header, ...otherProps } = modalProps
     return Component ? (
         <div className="modal">
             <div className="inner">
@@ -32,9 +32,9 @@ const ModalComponent: React.StatelessComponent<State.Modal> = ({ modalType, moda
                 <Component {...otherProps} />
             </div>
         </div>
-    ) : null;
-};
+    ) : null
+}
 
 export const Modal = connect(
     (state: State.Store) => state.modal
-)(ModalComponent);
+)(ModalComponent)

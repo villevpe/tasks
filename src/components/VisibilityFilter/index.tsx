@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { FilterLink } from './FilterLink';
-import './index.scss';
+import * as React from 'react'
+import { FilterLink } from './FilterLink'
+import './index.scss'
 
 const VisibilityFilter: React.SFC<{}> = () => (
     <div className="filters">
@@ -14,6 +14,6 @@ const VisibilityFilter: React.SFC<{}> = () => (
             Completed
         </FilterLink>
     </div>
-);
+)
 
-export default VisibilityFilter;
+export default VisibilityFilter
