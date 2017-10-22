@@ -61,9 +61,9 @@
         "lint": "tslint -p ./tsconfig.json",
         "heroku-postbuild": "npm run build",
         "start": "node ./server/index.js",
-        "test": "jest",
-        "test:watch": "jest --watch",
-        "test:watch:all": "jest --watchAll"
+        "test": "jest --coverage",
+        "test:watch": "jest --watch --coverage",
+        "test:watch:all": "jest --watchAll --coverage"
     },
     "pre-commit": [
         "lint",
