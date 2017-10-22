@@ -15,7 +15,7 @@ module.exports = {
         // bundle the client for hot reloading
         // only- means to only hot reload for successful updates
 
-        './src/index'
+        './src/index.tsx'
     ],
     output: {
         path: path.resolve(__dirname, 'dist/'),

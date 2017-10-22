@@ -1,22 +1,21 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 import './index.scss'
 import { AddTask } from './AddTask'
 import { ActionButton, ActionButtonProps } from './Toggle'
-import { closeModal } from '../../actions'
-import { connect } from 'react-redux'
-import { State } from '../../reducers'
+import { Application, Modal } from '../../state'
 
 const ModalComponents = {
-    'ADD_TASK': AddTask
+    [Modal.Types.AddTask]: AddTask
 }
 
 const closeModalProps: ActionButtonProps = {
     className: 'close',
     text: '✕',
-    action: closeModal
+    action: Modal.Actions.closeModal
 }
 
-const ModalComponent: React.StatelessComponent<State.Modal> = ({ modalType, modalProps }) => {
+const ModalComponent: React.StatelessComponent<Modal.State> = ({ modalType, modalProps }) => {
     if (!modalType) {
         return null
     }
@@ -35,6 +34,6 @@ const ModalComponent: React.StatelessComponent<State.Modal> = ({ modalType, moda
     ) : null
 }
 
-export const Modal = connect(
-    (state: State.Store) => state.modal
+export const ModalView = connect(
+    (state: Application.Store) => state.modal
 )(ModalComponent)

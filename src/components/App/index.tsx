@@ -1,26 +1,26 @@
 import * as React from 'react'
 import VisibilityFilter from '../VisibilityFilter'
 import { VisibileTaskList } from '../TaskList'
-import { Modal } from '../Modal'
+import { ModalView } from '../Modal'
 import { ActionButton, ActionButtonProps } from '../Modal/Toggle'
-import { openAddTaskModal, deleteAllTasks } from '../../actions'
-import './index.scss'
+import { Tasks, Modal } from '../../state/'
+import './App.scss'
 
 const modalProps: ActionButtonProps = {
     className: 'add-task',
     text: 'Add a task',
-    action: openAddTaskModal
+    action: Modal.Actions.openAddTaskModal
 }
 
 const clearAllProps: ActionButtonProps = {
     className: 'delete-all',
     text: 'Remove all tasks',
-    action: deleteAllTasks
+    action: Tasks.Actions.deleteAllTasks
 }
 
 const App = () => (
     <div className="app">
-        <Modal />
+        <ModalView />
         <div className="app-container">
             <h1>Tasks</h1>
             <VisibilityFilter />

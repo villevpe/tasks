@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { Dispatch, connect } from 'react-redux'
-import { addTask, Actions } from '../../../actions'
+import { Tasks, Modal } from '../../../state'
 import './index.scss'
 
 interface AddTaskComponentProps {
-    dispatch?: Dispatch<Actions.Task>
+    dispatch?: Dispatch<Tasks.Action>
 }
 
-let AddTaskComponent: React.StatelessComponent<AddTaskComponentProps> = ({ dispatch }) => {
+let AddTaskComponent: React.SFC<AddTaskComponentProps> = ({ dispatch }) => {
     let input: HTMLTextAreaElement
 
     return (
@@ -31,8 +31,9 @@ let AddTaskComponent: React.StatelessComponent<AddTaskComponentProps> = ({ dispa
         if (!input.value.trim()) {
             return
         }
-        dispatch(addTask(input.value))
+        dispatch(Tasks.Actions.addTask(input.value))
         input.value = ''
+        dispatch(Modal.Actions.closeModal())
     }
 }
 

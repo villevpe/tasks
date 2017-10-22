@@ -1,6 +1,6 @@
 import * as React from 'react'
-import './index.scss'
 import { connect, DispatchProp } from 'react-redux'
+import './index.scss'
 
 export interface ActionButtonProps {
     text: string
