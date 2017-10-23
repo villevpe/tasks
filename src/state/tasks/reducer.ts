@@ -1,8 +1,6 @@
 import { Reducer } from 'redux'
 import { Tasks } from './index'
-
 const initialState: Tasks.State = []
-
 const reducer: Reducer<Tasks.State> = (state = initialState, action: Tasks.Action): Tasks.State => {
   switch (action.type) {
     case Tasks.ActionTypes.AddTask:

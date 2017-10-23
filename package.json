@@ -41,6 +41,7 @@
         "file-loader": "1.1.5",
         "is-uuid": "1.0.2",
         "jest": "21.2.1",
+        "jest-localstorage-mock": "^2.0.1",
         "node-sass": "4.5.3",
         "postcss-loader": "2.0.8",
         "pre-commit": "^1.2.2",
@@ -78,6 +79,9 @@
         "transform": {
             "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
         },
-        "testRegex": "/src/.*\\.spec.(ts|tsx|js)$"
+        "testRegex": "/src/.*\\.spec.(ts|tsx|js)$",
+        "setupFiles": [
+            "jest-localstorage-mock"
+        ]
     }
 }
