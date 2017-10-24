@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { Dispatch, connect } from 'react-redux';
-import { addTask, Actions } from '../../../actions';
-import './index.scss';
+import * as React from 'react'
+import { Dispatch, connect } from 'react-redux'
+import { Tasks, Modal } from '../../../state'
+import './index.scss'
 
 interface AddTaskComponentProps {
-    dispatch?: Dispatch<Actions.Task>;
+    dispatch?: Dispatch<Tasks.Action>
 }
 
-let AddTaskComponent: React.StatelessComponent<AddTaskComponentProps> = ({ dispatch }) => {
-    let input: HTMLTextAreaElement;
+let AddTaskComponent: React.SFC<AddTaskComponentProps> = ({ dispatch }) => {
+    let input: HTMLTextAreaElement
 
     return (
         <div className="add-task-container">
@@ -24,16 +24,17 @@ let AddTaskComponent: React.StatelessComponent<AddTaskComponentProps> = ({ dispa
                 </button>
             </form>
         </div>
-    );
+    )
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
+        event.preventDefault()
         if (!input.value.trim()) {
-            return;
+            return
         }
-        dispatch(addTask(input.value));
-        input.value = '';
+        dispatch(Tasks.Actions.addTask(input.value))
+        input.value = ''
+        dispatch(Modal.Actions.closeModal())
     }
-};
+}
 
-export const AddTask: React.ComponentClass<AddTaskComponentProps> = connect()(AddTaskComponent);
+export const AddTask: React.ComponentClass<AddTaskComponentProps> = connect()(AddTaskComponent)

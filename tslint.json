@@ -16,7 +16,7 @@
             "check-space"
         ],
         "curly": true,
-        "eofline": false,
+        "eofline": true,
         "forin": true,
         "indent": [
             true,
@@ -36,22 +36,15 @@
         ],
         "member-ordering": [
             true,
-            "public-before-private",
-            "static-before-instance",
-            "variables-before-functions"
+            {
+                "order": "fields-first"
+            }
         ],
         "no-any": true,
         "no-arg": true,
         "no-bitwise": true,
         "no-console": [
-            true,
-            "log",
-            "error",
-            "debug",
-            "info",
-            "time",
-            "timeEnd",
-            "trace"
+            false
         ],
         "no-consecutive-blank-lines": true,
         "no-construct": true,
@@ -80,7 +73,7 @@
         "radix": true,
         "semicolon": [
             true,
-            "always"
+            "never"
         ],
         "switch-default": true,
         "trailing-comma": false,
@@ -120,5 +113,8 @@
             "check-type",
             "check-typecast"
         ]
+    },
+    "jsRules": {
+        "eofline": true
     }
 }
