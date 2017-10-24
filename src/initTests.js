@@ -1,3 +1,5 @@
+
+// Polyfill rAF for the tests so that react doesn't complain
 global.requestAnimationFrame = (cb) => {
   setTimeout(cb, 0)
 }
