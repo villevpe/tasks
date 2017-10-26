@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { shallow, ShallowWrapper } from 'enzyme'
-import VisibilityFilter from './index'
-import { FilterLink } from './FilterLink'
+import { FilterList } from './FilterList'
+import { Filter } from './Filter/Filter'
 
 describe('<VisibleTaskList />', () => {
   let wrapper: ShallowWrapper
 
   beforeAll(() => {
-    wrapper = shallow(<VisibilityFilter />)
+    wrapper = shallow(<FilterList />)
   })
 
   it('should render three filter links', () => {
-    expect(wrapper.find(FilterLink).length).toBe(3)
+    expect(wrapper.find(Filter).length).toBe(3)
   })
 
 })

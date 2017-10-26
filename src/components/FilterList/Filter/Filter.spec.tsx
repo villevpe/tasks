@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { mount } from 'enzyme'
-import configureStore from 'redux-mock-store'
-import { FilterLink } from './index'
 import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
+import { Filter } from './Filter'
 import { Filters } from '../../../state'
 
 describe('<VisibleTaskList />', () => {
@@ -36,9 +36,9 @@ function setup(state: {}) {
   return {
     wrapper: mount(
       <Provider store={store}>
-        <FilterLink filter={Filters.Types.ShowActive}>
+        <Filter filter={Filters.Types.ShowActive}>
           Test
-      </FilterLink>
+        </Filter>
       </Provider>
     ),
     store

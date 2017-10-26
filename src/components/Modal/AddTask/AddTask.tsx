@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Dispatch, connect } from 'react-redux'
 import { Tasks, Modal } from '../../../state'
-import './index.scss'
+import './AddTask.scss'
 
 interface AddTaskComponentProps {
     dispatch?: Dispatch<Tasks.Action>

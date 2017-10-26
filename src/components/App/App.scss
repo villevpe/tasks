@@ -38,6 +38,7 @@ textarea {
     width: 100%;
     @media screen and (min-width: 1024px) {
         max-width: $max-width;
+        
         max-height: $max-height;
     }
 }

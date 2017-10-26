@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { mount } from 'enzyme'
 import configureStore from 'redux-mock-store'
-import { ActionButton, ActionButtonProps } from './index'
+import { Button, ButtonProps } from './Button'
 import { Provider } from 'react-redux'
 
 describe('<ActionButton />', () => {
@@ -26,10 +26,10 @@ describe('<ActionButton />', () => {
   })
 })
 
-function setup(props: ActionButtonProps) {
+function setup(props: ButtonProps) {
   const store = configureStore()({})
   return {
-    wrapper: mount(<Provider store={store}><ActionButton {...props} /></Provider>),
+    wrapper: mount(<Provider store={store}><Button {...props} /></Provider>),
     store
   }
 }

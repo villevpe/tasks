@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { mount } from 'enzyme'
 import configureStore from 'redux-mock-store'
-import { VisibileTaskList } from './index'
 import { Provider } from 'react-redux'
+import { TaskList } from './TaskList'
 import { Tasks, Filters } from '../../state'
-import Task from './Task'
+import Task from './Task/Task'
 
 describe('<VisibleTaskList />', () => {
   const state = {
@@ -46,7 +46,7 @@ describe('<VisibleTaskList />', () => {
 function setup(state: {}) {
   const store = configureStore()(state)
   return {
-    wrapper: mount(<Provider store={store}><VisibileTaskList /></Provider>),
+    wrapper: mount(<Provider store={store}><TaskList /></Provider>),
     store
   }
 }

@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { mount } from 'enzyme'
 import configureStore from 'redux-mock-store'
-import { ModalView } from './index'
 import { Provider } from 'react-redux'
-import { Modal } from '../../state/index'
-import { AddTask } from './AddTask/'
-import { ActionButton } from './Toggle/index'
+import { Modal as ModalState } from '../../state'
+import { Modal } from './Modal'
+import { AddTask } from './AddTask/AddTask'
+import { Button } from '../Button/Button'
 
 describe('<ModalView />', () => {
 
@@ -17,14 +17,14 @@ describe('<ModalView />', () => {
   })
 
   describe('with addTask type', () => {
-    let { wrapper } = setup({ modalType: Modal.Types.AddTask, modalProps: {header: ''} })
+    let { wrapper } = setup({ modalType: ModalState.Types.AddTask, modalProps: {header: ''} })
 
     it('should render AddTask component', () => {
       expect(wrapper.find(AddTask).length).toBe(1)
     })
 
     it('should render close button component', () => {
-      expect(wrapper.find(ActionButton).length).toBe(1)
+      expect(wrapper.find(Button).length).toBe(1)
     })
   })
 
@@ -33,7 +33,7 @@ describe('<ModalView />', () => {
 function setup(props: {}) {
   const store = configureStore()({modal: {}})
   return {
-    wrapper: mount(<Provider store={store}><ModalView {...props} /></Provider>),
+    wrapper: mount(<Provider store={store}><Modal {...props} /></Provider>),
     store
   }
 }

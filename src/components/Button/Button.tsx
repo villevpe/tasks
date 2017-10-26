@@ -1,16 +1,16 @@
 import * as React from 'react'
 import { connect, DispatchProp } from 'react-redux'
-import './index.scss'
+import './Button.scss'
 
-export interface ActionButtonProps {
+export interface ButtonProps {
     text: string
     className: string
     action: Function
 }
 
-type ConnectedToggle = ActionButtonProps & DispatchProp<{}>
+type ConnectedButton = ButtonProps & DispatchProp<{}>
 
-const ToggleButton: React.SFC<ConnectedToggle> = ({ text, className, action, dispatch }) => {
+const ButttonComponent: React.SFC<ConnectedButton> = ({ text, className, action, dispatch }) => {
     return (
         <button type="button" className={`btn ${className}`} onClick={() => dispatch(action())}>
             {text}
@@ -18,4 +18,4 @@ const ToggleButton: React.SFC<ConnectedToggle> = ({ text, className, action, dis
     )
 }
 
-export const ActionButton = connect()(ToggleButton)
+export const Button = connect()(ButttonComponent)

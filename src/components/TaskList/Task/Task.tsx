@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as classNames from 'classnames'
-import './index.scss'
+import './Task.scss'
 
 interface TaskComponentProps {
     onClick: React.MouseEventHandler<HTMLLIElement>

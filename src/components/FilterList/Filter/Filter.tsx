@@ -13,7 +13,7 @@ type FilterDispatch = {
 
 type FilterLinkProps = FilterState & FilterDispatch & { children?: React.ReactNode }
 
-const Link: React.SFC<FilterLinkProps> = ({ active, children, onClick }) => {
+const FilterComponent: React.SFC<FilterLinkProps> = ({ active, children, onClick }) => {
     const classes = classNames('btn filter', { 'active': active })
 
     return (
@@ -40,9 +40,9 @@ const mapDispatchToProps = (dispatch: Function, ownProps: Filters.State): Filter
     onClick: () => dispatch(Filters.Actions.setVisibilityFilter(ownProps.filter))
 })
 
-const FilterLink = connect(
+const Filter = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Link)
+)(FilterComponent)
 
-export { FilterLink }
+export { Filter }
