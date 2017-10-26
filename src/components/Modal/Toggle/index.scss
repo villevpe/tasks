@@ -1,5 +1,6 @@
 .btn {
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     border: none;
     background-color: #00b2fb;
