@@ -7,7 +7,6 @@ body {
     padding: 0;
     height: 100%;
     overflow: hidden;
-    animation: colorchange 10s ease infinite;
 }
 
 h1 {
@@ -64,16 +63,4 @@ textarea {
 .modal+.app-container {
     filter: blur(3px);
     transition: filter .1s ease;
-}
-
-@keyframes colorchange {
-    0% {
-        background: #528ba2;
-    }
-    50% {
-        background: #487a8e;
-    }
-    100% {
-        background: #528ba2;
-    }
 }
