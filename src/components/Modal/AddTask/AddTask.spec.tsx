@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { mount } from 'enzyme'
 import configureStore from 'redux-mock-store'
-import { AddTask } from './index'
+import { AddTask } from './AddTask'
 import { Provider } from 'react-redux'
 import { Tasks, Modal } from '../../../state/index'
 import { Action } from 'redux-actions'

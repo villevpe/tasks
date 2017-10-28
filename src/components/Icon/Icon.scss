@@ -1,0 +1,20 @@
+.icon {
+    &.sm svg {
+        width: 24px;
+        height: 24px;
+    }
+    &.md svg {
+        width: 32px;
+        height: 32px;
+    }
+    &.lg svg {
+        width: 48px;
+        height: 48px;
+    }
+    &.white svg {
+        fill: #ffffff;
+    }
+    &.gray svg {
+      fill: #aaaaaa;
+  }
+}

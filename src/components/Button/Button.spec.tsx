@@ -1,15 +1,16 @@
 import * as React from 'react'
 import { mount } from 'enzyme'
 import configureStore from 'redux-mock-store'
-import { ActionButton, ActionButtonProps } from './index'
+import { Button, ButtonProps } from './Button'
 import { Provider } from 'react-redux'
 
 describe('<ActionButton />', () => {
   const text = 'test'
+  const label = 'test'
   const className = 'test-btn'
   const payload = { type: 'test' }
 
-  let { wrapper, store } = setup({ className, text, action: () => payload })
+  let { wrapper, store } = setup({ className, text, label, action: () => payload })
 
   it('should show the provided text', () => {
     expect(wrapper.find('button').text()).toEqual(text)
@@ -26,10 +27,10 @@ describe('<ActionButton />', () => {
   })
 })
 
-function setup(props: ActionButtonProps) {
+function setup(props: ButtonProps) {
   const store = configureStore()({})
   return {
-    wrapper: mount(<Provider store={store}><ActionButton {...props} /></Provider>),
+    wrapper: mount(<Provider store={store}><Button {...props} /></Provider>),
     store
   }
 }

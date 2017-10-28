@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Dispatch, connect } from 'react-redux'
 import { Tasks, Modal } from '../../../state'
-import './index.scss'
+import './AddTask.scss'
 
 interface AddTaskComponentProps {
     dispatch?: Dispatch<Tasks.Action>
@@ -16,10 +16,11 @@ let AddTaskComponent: React.SFC<AddTaskComponentProps> = ({ dispatch }) => {
                 onSubmit={e => handleSubmit(e)}
             >
                 <textarea
+                    autoFocus={true}
                     placeholder="What needs to be done?"
                     ref={node => input = node}
                 />
-                <button className="btn add-task" type="submit">
+                <button className="btn submit" type="submit">
                     Add
                 </button>
             </form>

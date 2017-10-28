@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { connect, Dispatch } from 'react-redux'
-import Task from './Task'
+import Task from './Task/Task'
 import { Tasks, Filters, Application } from '../../state'
-import './index.scss'
+import './TaskList.scss'
 
 export type TaskListDispatch = {
     onTaskClick: Function;
@@ -13,7 +13,7 @@ export type TaskListState = {
     tasks: Tasks.State
 }
 
-const TaskList: React.SFC<TaskListState & TaskListDispatch> = ({ tasks, onTaskClick, onDeleteClick }) => (
+const TaskListComponent: React.SFC<TaskListState & TaskListDispatch> = ({ tasks, onTaskClick, onDeleteClick }) => (
     <ul>
         {tasks.map(task => (
             <Task
@@ -29,9 +29,9 @@ const TaskList: React.SFC<TaskListState & TaskListDispatch> = ({ tasks, onTaskCl
 const getVisibleTasks = (tasks: Tasks.State, filter: Filters.Types) => {
     switch (filter) {
         case Filters.Types.ShowCompleted:
-            return tasks.filter((task) => task.completed)
+            return tasks.filter((task: Tasks.Task) => task.completed)
         case Filters.Types.ShowActive:
-            return tasks.filter((task) => !task.completed)
+            return tasks.filter((task: Tasks.Task) => !task.completed)
         default:
             return tasks
     }
@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch: Dispatch<Tasks.Action>): TaskListDispatch 
     onDeleteClick: (id: string) => dispatch(Tasks.Actions.deleteTask(id))
 })
 
-export const VisibileTaskList = connect(
+export const TaskList = connect(
     mapStateToProps,
     mapDispatchToProps
-)(TaskList)
+)(TaskListComponent)

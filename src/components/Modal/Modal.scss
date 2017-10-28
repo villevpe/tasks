@@ -9,6 +9,7 @@
     animation: reveal .2s ease;
     .inner {
         display: flex;
+        flex-shrink: 0;
         flex-direction: column;
         height: 70%;
         width: 80%;
@@ -16,6 +17,10 @@
         border-radius: 20px;
         background-color: white;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        @media screen and (max-width: 768px) {
+            height: 90%;
+            width: 90%;
+        }
     }
     .header {
         display: flex;

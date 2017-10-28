@@ -13,8 +13,8 @@ describe('Modal Reducer', () => {
     expect(reducer(undefined, { type: null })).toEqual(initialValue)
   })
 
-  it('should return initialState with HideModal', () => {
-    expect(reducer(null, { type: Modal.ActionTypes.HideModal })).toEqual(initialValue)
+  it('should set modalType to null with HideModal', () => {
+    expect(reducer(initialValue, { type: Modal.ActionTypes.HideModal }).modalType).toEqual(null)
   })
 
   it('should return payload with ShowModal', () => {
