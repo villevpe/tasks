@@ -12,6 +12,7 @@ $buttonTextColor: white;
         width: 100%;
         height: 90%;
         textarea {
+            resize: none;
             font-size: 1.2em;
             width: 90%;
             height: 80%;
@@ -26,6 +27,8 @@ $buttonTextColor: white;
             }
         }
         .btn {
+            width: 50%;
+            max-width: 300px;
             margin-top: 2em;
         }
     }

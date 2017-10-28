@@ -29,9 +29,9 @@ const TaskListComponent: React.SFC<TaskListState & TaskListDispatch> = ({ tasks,
 const getVisibleTasks = (tasks: Tasks.State, filter: Filters.Types) => {
     switch (filter) {
         case Filters.Types.ShowCompleted:
-            return tasks.filter((task) => task.completed)
+            return tasks.filter((task: Tasks.Task) => task.completed)
         case Filters.Types.ShowActive:
-            return tasks.filter((task) => !task.completed)
+            return tasks.filter((task: Tasks.Task) => !task.completed)
         default:
             return tasks
     }

@@ -16,10 +16,11 @@ let AddTaskComponent: React.SFC<AddTaskComponentProps> = ({ dispatch }) => {
                 onSubmit={e => handleSubmit(e)}
             >
                 <textarea
+                    autoFocus={true}
                     placeholder="What needs to be done?"
                     ref={node => input = node}
                 />
-                <button className="btn add-task" type="submit">
+                <button className="btn submit" type="submit">
                     Add
                 </button>
             </form>

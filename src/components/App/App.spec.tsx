@@ -12,7 +12,7 @@ describe('<App />', () => {
   })
 
   it('should render actions', () => {
-    expect(wrapper.find(Button).length).toBe(2)
+    expect(wrapper.find(Button).length).toBe(1)
   })
 
   it('should render header', () => {

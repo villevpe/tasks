@@ -18,9 +18,32 @@
         align-self: flex-end;
     }
     &.add-task {
-        border: 1px solid #0083b9;
-        width: 50%;
-        max-width: 300px;
+        position: fixed;
+        bottom: 1em;
+        right: 1em;
+        font-size: 3em;
+        padding: 0;
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.64);
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
+        align-items: baseline;
+        span {
+            height: 1.5em;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+        }
+        &:active {
+            background-color: lighten(#00b2fb, 10)
+        }
+
+        @media screen and (min-width: 768px) {
+            position: relative;
+            bottom: 0;
+            align-self: flex-end;
+        }
     }
     &.filter {
         color: #CCC;
@@ -37,7 +60,6 @@
     &:focus {
         outline: 0;
     }
-
     &.delete-all {
         background-color: #c76363;
         width: 50%;

@@ -13,7 +13,9 @@ type ConnectedButton = ButtonProps & DispatchProp<{}>
 const ButttonComponent: React.SFC<ConnectedButton> = ({ text, className, action, dispatch }) => {
     return (
         <button type="button" className={`btn ${className}`} onClick={() => dispatch(action())}>
-            {text}
+            <span>
+                {text}
+            </span>
         </button>
     )
 }
