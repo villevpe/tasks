@@ -1,5 +1,5 @@
 const debounce = require('debounce')
-const SAVE_STATE_DEBOUNCE_MS = 1000
+const SAVE_STATE_DEBOUNCE_MS = 100
 
 export class Storage<T> {
   private key: string

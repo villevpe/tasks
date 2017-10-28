@@ -6,10 +6,11 @@ import { Provider } from 'react-redux'
 
 describe('<ActionButton />', () => {
   const text = 'test'
+  const label = 'test'
   const className = 'test-btn'
   const payload = { type: 'test' }
 
-  let { wrapper, store } = setup({ className, text, action: () => payload })
+  let { wrapper, store } = setup({ className, text, label, action: () => payload })
 
   it('should show the provided text', () => {
     expect(wrapper.find('button').text()).toEqual(text)

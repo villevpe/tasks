@@ -13,9 +13,12 @@ const reducer: Reducer<Modal.State> = (state = initialState, action: Modal.Actio
     case Modal.ActionTypes.ShowModal:
       return action.payload
     case Modal.ActionTypes.HideModal:
-      return initialState
+      return {
+        modalType: null,
+        modalProps: state.modalProps
+      }
     default:
-      return state
+      return initialState
   }
 }
 

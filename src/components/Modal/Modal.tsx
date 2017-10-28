@@ -13,6 +13,7 @@ const ModalComponents = {
 
 const closeModalProps: ButtonProps = {
     className: 'close',
+    label: 'Close',
     text: '✕',
     action: ModalState.Actions.closeModal
 }

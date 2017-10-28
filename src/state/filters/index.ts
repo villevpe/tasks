@@ -1,11 +1,12 @@
 import { Action as ReduxAction } from 'redux'
 import taskReducer from './reducer'
-import { setVisibilityFilter } from './actions'
+import { setFilter, setListVisibility } from './actions'
 
 export namespace Filters {
 
   export enum ActionTypes {
-    SetVisibilityFilter = 'SetVisibilityFilter'
+    SetFilter = 'SetFilter',
+    SetListVisibility = 'ToggleFilterList'
   }
 
   export enum Types {
@@ -15,7 +16,8 @@ export namespace Filters {
   }
 
   export type State = {
-    filter: Filters.Types
+    filter?: Filters.Types,
+    open?: boolean
   }
 
   export interface Action extends ReduxAction {
@@ -24,7 +26,8 @@ export namespace Filters {
   }
 
   export const Actions = {
-    setVisibilityFilter
+    setFilter,
+    setListVisibility
   }
 
   export const Reducer = taskReducer

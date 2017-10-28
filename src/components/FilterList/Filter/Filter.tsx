@@ -14,7 +14,7 @@ type FilterDispatch = {
 type FilterLinkProps = FilterState & FilterDispatch & { children?: React.ReactNode }
 
 const FilterComponent: React.SFC<FilterLinkProps> = ({ active, children, onClick }) => {
-    const classes = classNames('btn filter', { 'active': active })
+    const classes = classNames('btn filter-toggle', { 'active': active })
 
     return (
         <button
@@ -37,7 +37,7 @@ const mapStateToProps = (state: Application.Store, ownProps: Filters.State): Fil
 })
 
 const mapDispatchToProps = (dispatch: Function, ownProps: Filters.State): FilterDispatch => ({
-    onClick: () => dispatch(Filters.Actions.setVisibilityFilter(ownProps.filter))
+    onClick: () => dispatch(Filters.Actions.setFilter(ownProps.filter))
 })
 
 const Filter = connect(
