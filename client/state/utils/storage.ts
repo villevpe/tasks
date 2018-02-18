@@ -1,24 +1,31 @@
 const debounce = require('debounce')
 const SAVE_STATE_DEBOUNCE_MS = 100
 
+/** 
+ * Data storage wrapper, currently supports only localStorage
+ */
 export class Storage<T> {
   private key: string
   private interval: number
+  private useLocalStorage: boolean
 
   constructor(storageKey: string, saveInterval: number = SAVE_STATE_DEBOUNCE_MS) {
-    if (!window.localStorage) {
-      throw new Error('Storage initialization failed, no support for localStorage')
-    }
+    this.useLocalStorage = typeof window !== 'undefined' ? !!window.localStorage : false
     this.key = storageKey
     this.interval = saveInterval
   }
 
   public save(data: T) {
-    debounce(this.set.bind(this, data), this.interval)()
+    if (this.useLocalStorage) {
+      debounce(this.set.bind(this, data), this.interval)()
+    }
   }
 
   public load(): T | {} {
-    return this.has() ? this.get() : {}
+    if (!this.useLocalStorage) {
+      return {}
+    }
+    return this.hasData() ? this.get() : {}
   }
 
   private get(): T | {} {
@@ -31,11 +38,14 @@ export class Storage<T> {
     }
   }
 
-  private has(): boolean {
+  private hasData(): boolean {
     return !!localStorage.getItem(this.key)
   }
 
   private set(data: T) {
+    if (!this.useLocalStorage) {
+      return
+    }
     try {
       localStorage.setItem(this.key, JSON.stringify(data))
     } catch (error) {

@@ -1,20 +1,16 @@
+
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+
 module.exports = {
-    entry: [
-        './src/index'
-    ],
     output: {
-        path: path.resolve(__dirname, 'dist/'),
-        filename: 'index.js'
+        path: path.resolve(__dirname, '../build/'),
+        filename: '[name].js'
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js'],
-        alias: {
-            styles: path.resolve(__dirname, 'src/styles')
-        }
+        extensions: ['.ts', '.tsx', '.js']
     },
     module: {
         rules: [
@@ -30,18 +26,9 @@ module.exports = {
                     use: [
                         'css-loader',
                         'sass-loader',
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: () => [
-                                    require('autoprefixer')({
-                                        browsers: ['last 4 versions']
-                                    })
-                                ]
-                            }
-                        }
+                        'postcss-loader'
                     ],
-                    fallback: "style-loader"
+                    fallback: 'style-loader'
                 })
             },
             {
@@ -61,9 +48,11 @@ module.exports = {
         new webpack.optimize.ModuleConcatenationPlugin(),
         new ExtractTextPlugin({
             filename: 'style.css',
-            disable: process.env.NODE_ENV === "development",
             allChunks: true
         })
     ],
-    devtool: '#source-map'
+    devtool: '#source-map',
+    stats: {
+        children: false
+    }
 }

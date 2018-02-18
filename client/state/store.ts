@@ -9,7 +9,11 @@ export { store }
 
 function initStore(): Store<{}> {
   const storage = new Storage<Application.Store | {}>('tasksState')
-  let newStore = createStore(Application.Reducer, storage.load())
-  newStore.subscribe(() => storage.save(newStore.getState()))
+
+  const newStore = createStore(Application.Reducer, storage.load())
+
+  newStore.subscribe(() => {
+    storage.save(newStore.getState())
+  })
   return newStore
 }
