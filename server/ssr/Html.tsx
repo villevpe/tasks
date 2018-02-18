@@ -13,7 +13,7 @@ const Html: React.SFC<{}> = (props) => {
             </head>
             <body>
                 <div id="app">{props.children}</div>
-                <script src="app.js"></script>
+                <script src="app.js" async={true}></script>
             </body>
         </html>
     )
