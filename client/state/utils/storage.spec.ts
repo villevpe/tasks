@@ -13,11 +13,11 @@ describe('Storage', () => {
   describe('constructor', () => {
     const localStorage = window.localStorage
 
-    it('no localStorage should throw error', () => {
+    it('no localStorage should not throw error', () => {
       Object.defineProperty(window, 'localStorage', {
         value: undefined
       })
-      expect(() => new Storage<{}>(key)).toThrowError()
+      expect(() => new Storage<{}>(key)).not.toThrowError()
     })
 
     afterAll(() => {
