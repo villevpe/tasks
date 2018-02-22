@@ -23,11 +23,20 @@ $color: #00716f;
         position: relative;
         align-items: center;
         align-self: flex-end;
-        bottom: 0;
         padding: 0;
         background-color: transparent;
+        bottom: 0;
         right: 0;
     }
+
+    @media screen and (max-width: 768px) {
+        &.add-task {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+    }
+
     &.filter-toggle {
         color: #CCC;
         font-size: 0.9em;
