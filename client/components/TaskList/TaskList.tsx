@@ -13,18 +13,25 @@ export type TaskListState = {
     tasks: Tasks.State
 }
 
-const TaskListComponent: React.SFC<TaskListState & TaskListDispatch> = ({ tasks, onTaskClick, onDeleteClick }) => (
-    <ul>
-        {tasks.map(task => (
-            <Task
-                key={task.id}
-                onClick={() => onTaskClick(task.id)}
-                onDeleteClick={() => onDeleteClick(task.id)}
-                {...task}
-            />
-        ))}
-    </ul>
-)
+const TaskListComponent: React.SFC<TaskListState & TaskListDispatch> = ({ tasks, onTaskClick, onDeleteClick }) => {
+    return tasks.length === 0 ?
+        (
+            <div className="empty">
+                <p>You don't have any tasks to do</p>
+            </div>
+        ) : (
+            <ul>
+                {tasks.map(task => (
+                    <Task
+                        key={task.id}
+                        onClick={() => onTaskClick(task.id)}
+                        onDeleteClick={() => onDeleteClick(task.id)}
+                        {...task}
+                    />
+                ))}
+            </ul>
+        )
+}
 
 const getVisibleTasks = (tasks: Tasks.State, filter: Filters.Types) => {
     switch (filter) {
