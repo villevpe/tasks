@@ -20,18 +20,6 @@ module.exports = {
                 loaders: ['ts-loader']
             },
             {
-                test: /\.scss$/,
-                exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        'css-loader',
-                        'sass-loader',
-                        'postcss-loader'
-                    ],
-                    fallback: 'style-loader'
-                })
-            },
-            {
                 test: /\.(png|woff|woff2|eot|ttf|svg)$/,
                 exclude: /node_modules/,
                 loader: 'file-loader?name=[name].[ext]&publicPath=./'
@@ -51,7 +39,7 @@ module.exports = {
             allChunks: true
         })
     ],
-    devtool: '#source-map',
+    devtool: false,
     stats: {
         children: false
     }
