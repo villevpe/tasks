@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { AddTask } from './AddTask/AddTask'
+import { EditTask } from './EditTask/EditTask'
 import { Button, ButtonProps } from '../Button/Button'
 import { Application, Modal as ModalState } from '../../state'
 import { OutsideClick, OutsideClickProps } from './OutsideClick'
@@ -8,7 +9,8 @@ import { store } from '../../state/store'
 import './Modal.scss'
 
 const ModalComponents = {
-    [ModalState.Types.AddTask]: AddTask
+    [ModalState.Types.AddTask]: AddTask,
+    [ModalState.Types.EditTask]: EditTask
 }
 
 const closeModalProps: ButtonProps = {
@@ -27,9 +29,8 @@ const ModalComponent: React.SFC<ModalState.State> = ({ modalType, modalProps }) 
         return null
     }
     const Component = ModalComponents[modalType]
-    const { header, ...otherProps } = modalProps
+    const { header, task } = modalProps
     return Component ? (
-
         <div className="modal">
             <OutsideClick {...clickOutsideProps}>
                 <div className="inner">
@@ -37,7 +38,7 @@ const ModalComponent: React.SFC<ModalState.State> = ({ modalType, modalProps }) 
                         <h3>{header}</h3>
                         <Button {...closeModalProps} />
                     </div>
-                    <Component {...otherProps} />
+                    <Component task={task} />
                 </div>
             </OutsideClick>
         </div>

@@ -12,6 +12,9 @@ describe('<VisibleTaskList />', () => {
       onClick: () => false,
       onDeleteClick: onDeleteSpy,
       completed: true,
+      active: true,
+      onEditClick: () => false,
+      onToggleClick: () => false,
       text
     }
     wrapper = shallow(<Task {...props} />)
@@ -23,6 +26,10 @@ describe('<VisibleTaskList />', () => {
 
   it('should show delete button when task is completed', () => {
     expect(wrapper.find('.delete').length).toBe(1)
+  })
+
+  it('should show revert button when task is completed', () => {
+    expect(wrapper.find('.revert').length).toBe(1)
   })
 
   it('should call onDeleteClick with .delete click', () => {

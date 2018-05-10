@@ -1,23 +1,27 @@
 import * as React from 'react'
 import { connect, Dispatch } from 'react-redux'
 import Task from './Task/Task'
-import { Tasks, Filters, Application } from '../../state'
+import { Tasks, Filters, Application, Modal } from '../../state'
 import './TaskList.scss'
 
 export type TaskListDispatch = {
-    onTaskClick: Function;
-    onDeleteClick: Function;
+    onTaskClick: Function
+    onDeleteClick: Function
+    onEditClick: Function
+    onToggleClick: Function
 }
 
 export type TaskListState = {
     tasks: Tasks.State
 }
 
-const TaskListComponent: React.SFC<TaskListState & TaskListDispatch> = ({ tasks, onTaskClick, onDeleteClick }) => {
+type TaskListSFC = React.SFC<TaskListState & TaskListDispatch>
+
+const TaskListComponent: TaskListSFC = ({ tasks, onTaskClick, onDeleteClick, onEditClick, onToggleClick }) => {
     return tasks.length === 0 ?
         (
             <div className="empty">
-                <p>You don't have any tasks to do</p>
+                <p>This list is empty</p>
             </div>
         ) : (
             <ul>
@@ -26,6 +30,8 @@ const TaskListComponent: React.SFC<TaskListState & TaskListDispatch> = ({ tasks,
                         key={task.id}
                         onClick={() => onTaskClick(task.id)}
                         onDeleteClick={() => onDeleteClick(task.id)}
+                        onEditClick={() => onEditClick(task)}
+                        onToggleClick={() => onToggleClick(task.id)}
                         {...task}
                     />
                 ))}
@@ -49,8 +55,10 @@ const mapStateToProps = (state: Application.Store): TaskListState => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<Tasks.Action>): TaskListDispatch => ({
-    onTaskClick: (id: string) => dispatch(Tasks.Actions.toggleTask(id)),
-    onDeleteClick: (id: string) => dispatch(Tasks.Actions.deleteTask(id))
+    onTaskClick: (id: string) => dispatch(Tasks.Actions.activateTask(id)),
+    onDeleteClick: (id: string) => dispatch(Tasks.Actions.deleteTask(id)),
+    onToggleClick: (id: string) => dispatch(Tasks.Actions.toggleTask(id)),
+    onEditClick: (task: Tasks.Task) => dispatch(Modal.Actions.openEditModal(task)),
 })
 
 export const TaskList = connect(
