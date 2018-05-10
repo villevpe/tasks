@@ -1,4 +1,4 @@
-ul {
+ul, .empty {
     width: 100%;
     min-height: 70vh;
     max-width: 1280px;
@@ -6,16 +6,20 @@ ul {
     flex-direction: column;
     align-items: center;
     list-style-type: none;
-    padding: 0 0 0 1em;
+    padding: 1em 0 0 1em;
     margin: 0;
     overflow-x: hidden;
     overflow-y: auto;
-
     @media screen and (min-height: 1279px) {
         min-height: 30vh;
     }
-
     @media screen and (min-width: 1279px) {
         min-height: 30vh;
     }
+}
+
+.empty p {
+    color: white;
+    font-size: 1.1em;
+    padding-top: 1em;
 }

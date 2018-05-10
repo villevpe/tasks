@@ -1,6 +1,7 @@
 import { Action as ReduxAction } from 'redux'
 import modalReducer from './reducer'
-import { openAddTaskModal, closeModal } from './actions'
+import { openAddTaskModal, closeModal, openEditModal } from './actions'
+import { Tasks } from '../tasks'
 
 export namespace Modal {
 
@@ -10,13 +11,15 @@ export namespace Modal {
   }
 
   export enum Types {
-    AddTask = 'AddTask'
+    AddTask = 'AddTask',
+    EditTask = 'EditTask'
   }
 
   export type State = {
     modalType: Modal.Types
     modalProps: {
-        header: string
+        header: string,
+        task?: Tasks.Task
     }
   }
 
@@ -27,6 +30,7 @@ export namespace Modal {
 
   export const Actions = {
     openAddTaskModal,
+    openEditModal,
     closeModal
   }
 

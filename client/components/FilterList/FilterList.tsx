@@ -4,12 +4,10 @@ import { Filters, Application } from '../../state'
 import { connect } from 'react-redux'
 import './FilterList.scss'
 
-export const FilterListComponent: React.SFC<Filters.State> = (state) =>
-    state.open ? (
-        <div className="filters">
-            <Filter filter={Filters.Types.ShowAll} aria-label="Show all">
-                All
-            </Filter>
+export const FilterListComponent: React.SFC<Filters.State> = (state) => {
+
+    return (
+        <div className={`filters ${state.open ? 'open' : 'closed'}`}>
             <Filter filter={Filters.Types.ShowActive} aria-label="Show active">
                 Active
             </Filter>
@@ -17,7 +15,8 @@ export const FilterListComponent: React.SFC<Filters.State> = (state) =>
                 Completed
             </Filter>
         </div>
-    ) : null
+    )
+}
 
 export const FilterList = connect(
     (state: Application.Store) => state.filters

@@ -2,6 +2,39 @@
     display: flex;
     justify-content: space-between;
     flex-shrink: 0;
-    padding: 0 1em 1em 1em;
     width: 100%;
+    padding: 0 1em 1em 1em;
+    transform: translateZ(0);
+
+    &.open {
+        animation: fadeFromTop .2s;
+    }
+    &.closed {
+        animation: fadeToTop .2s;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes fadeFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeToTop {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
 }

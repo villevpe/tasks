@@ -1,12 +1,15 @@
 import { Action as ReduxAction } from 'redux'
 import taskReducer from './reducer'
-import { addTask, toggleTask, deleteTask, deleteAllTasks } from './actions'
+import { addTask, changeTask, toggleTask, deleteTask, editTask, deleteAllTasks, activateTask } from './actions'
 
 export namespace Tasks {
 
   export enum ActionTypes {
+    ActivateTask = 'ActivateTask',
     AddTask = 'AddTask',
+    ChangeTask = 'ChangeTask',
     RemoveTask = 'RemoveTask',
+    EditTask = 'EditTask',
     RemoveAllTasks = 'RemoveAllTasks',
     ToggleTask = 'ToggleTask'
   }
@@ -14,6 +17,7 @@ export namespace Tasks {
   export interface Task {
     id?: string
     completed?: boolean
+    active?: boolean
     text?: string
   }
 
@@ -25,8 +29,11 @@ export namespace Tasks {
   }
 
   export const Actions = {
+    activateTask,
     addTask,
+    changeTask,
     toggleTask,
+    editTask,
     deleteTask,
     deleteAllTasks
   }

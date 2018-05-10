@@ -1,28 +1,28 @@
 import * as React from 'react'
 import { Dispatch, connect } from 'react-redux'
 import { Tasks, Modal } from '../../../state'
-import './AddTask.scss'
+import './EditTask.scss'
 
-interface AddTaskComponentProps {
+interface EditTaskComponentProps {
     dispatch?: Dispatch<Tasks.Action>
     task?: Tasks.Task
 }
 
-let AddTaskComponent: React.SFC<AddTaskComponentProps> = ({ dispatch }) => {
+let EditTaskComponent: React.SFC<EditTaskComponentProps> = ({ dispatch, task }) => {
     let input: HTMLTextAreaElement
 
     return (
-        <div className="add-task-container">
+        <div className="edit-task-container">
             <form
                 onSubmit={e => handleSubmit(e)}
             >
                 <textarea
                     autoFocus={true}
-                    placeholder="What needs to be done?"
+                    defaultValue={task.text}
                     ref={node => input = node}
                 />
                 <button className="btn submit" type="submit">
-                    Add
+                    Save
                 </button>
             </form>
         </div>
@@ -33,10 +33,14 @@ let AddTaskComponent: React.SFC<AddTaskComponentProps> = ({ dispatch }) => {
         if (!input.value.trim()) {
             return
         }
-        dispatch(Tasks.Actions.addTask(input.value))
+        dispatch(Tasks.Actions.changeTask(task.id, {
+            ...task,
+            text: input.value,
+            active: false
+        }))
         input.value = ''
         dispatch(Modal.Actions.closeModal())
     }
 }
 
-export const AddTask: React.ComponentClass<AddTaskComponentProps> = connect()(AddTaskComponent)
+export const EditTask: React.ComponentClass<EditTaskComponentProps> = connect()(EditTaskComponent)

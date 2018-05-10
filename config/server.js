@@ -1,7 +1,7 @@
 const path = require('path');
 const merge = require('webpack-merge');
 
-const common = require('./common')
+const common = require('./common');
 
 module.exports = merge(common, {
     // The target should be set to "node" to avoid packaging built-ins
@@ -18,6 +18,16 @@ module.exports = merge(common, {
         // Outputs node-compatible modules instead of browser-compatible ones
         libraryTarget: 'commonjs2'
     },
+    module: {
+        rules: [
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                use: 'null-loader'
+            }
+        ]
+    },
     // Avoids bundling external dependencies, so node can load them directly from node_modules/
     externals: Object.keys(require('../package.json').dependencies),
+    devtool: false
 })

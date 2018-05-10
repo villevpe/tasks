@@ -8,8 +8,8 @@ import { Filter } from './Filter/Filter'
 describe('<VisibleTaskList />', () => {
   let { wrapper } = setup()
   
-  it('should render three filter links', () => {
-    expect(wrapper.find(Filter).length).toBe(3)
+  it('should render two filter links', () => {
+    expect(wrapper.find(Filter).length).toBe(2)
   })
 
 })

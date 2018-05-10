@@ -35,11 +35,11 @@ describe('<VisibleTaskList />', () => {
     expect(wrapper.find(Task).length).toBe(state.tasks.length)
   })
 
-  it('should dispatch toggleTask with Task click', () => {
-    const task = wrapper.find(Task).first()
+  it('should dispatch activateTask with Task click', () => {
+    const task = wrapper.find(Task).first().find('span')
     task.simulate('click')
     let actions = store.getActions()
-    expect(actions.find(action => action.type === Tasks.ActionTypes.ToggleTask)).toBeTruthy()
+    expect(actions.find(action => action.type === Tasks.ActionTypes.ActivateTask)).toBeTruthy()
   })
 })
 

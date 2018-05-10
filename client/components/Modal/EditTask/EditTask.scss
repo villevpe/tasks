@@ -1,0 +1,33 @@
+.edit-task-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 90%;
+        textarea {
+            resize: none;
+            font-size: 1.2em;
+            width: 90%;
+            height: 80%;
+            display: flex;
+            border: none;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            &:active,
+            &:focus {
+                outline: 0;
+            }
+        }
+        .btn {
+            width: 50%;
+            max-width: 300px;
+            margin-top: 2em;
+        }
+    }
+}
