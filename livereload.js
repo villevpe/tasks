@@ -1,8 +1,14 @@
 
 const { watch } = require('fs')
-const { spawn } = require('child_process')
+const { spawn, exec } = require('child_process')
 const { resolve } = require('path')
 const debounce = require('debounce')
+
+const WIN_PLATFORM = 'win32'
+const MACOS_PLATFORM = 'darwin'
+const BASH = '/bin/bash'
+const SHELL = '/bin/sh'
+const POWERSHELL = 'C:/Windows/System32/WindowsPowershell/v1.0'
 
 /**
  * Simple livereload wrapper for any kind of task that can be run in shell.
@@ -24,6 +30,18 @@ class Livereload {
         this.debounceTime = debounceTime
     }
 
+    get isWindows() {
+        return process.platform === WIN_PLATFORM
+    }
+
+    get isMacOS() {
+        return process.platform === MACOS_PLATFORM
+    }
+
+    get shell() {
+        return process.env.SHELL || (this.isMacOS ? BASH : SHELL)
+    }
+
     /** 
      * Restart the task.
      * @private
@@ -39,7 +57,13 @@ class Livereload {
      * @private
      */
     run() {
-        this.process = spawn('sh', ['-c', this.task], { stdio: 'inherit', detached: true })
+        if (this.isWindows) {
+            this.process = exec(this.task)
+            this.process.stdout.pipe(process.stdout)
+            this.process.stderr.pipe(process.stderr)
+        } else {
+            this.process = spawn(this.shell, ['-c', this.task], { stdio: 'inherit', detached: true })
+        }
     }
 
     /** 
@@ -63,7 +87,15 @@ class Livereload {
      */
     stop() {
         if (this.process && this.process.pid) {
-            process.kill(-this.process.pid)
+            if (this.isWindows) {
+                /**
+                 * Spawn a new process to kill the current process for Windows
+                 * @see https://stackoverflow.com/questions/23706055/why-can-i-not-kill-my-child-process-in-nodejs-on-windows
+                 */
+                spawn('taskkill', ['/pid', this.process.pid, '/f', '/t'])
+            } else {
+                process.kill(-this.process.pid)
+            }
         }
     }
 }
