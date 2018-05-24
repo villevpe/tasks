@@ -10,12 +10,12 @@ import { Application } from '../../state'
 describe('<App />', () => {
   let { wrapper } = setup()
 
-  it('should render tasklist', () => {
+  it('should render TaskList component', () => {
     expect(wrapper.find(TaskList).length).toBe(1)
   })
 
-  it('should render actions', () => {
-    expect(wrapper.find(Button).length).toBe(2)
+  it('should render Button components', () => {
+    expect(wrapper.find(Button).length).toBe(3)
   })
 
   it('should render header', () => {
@@ -32,7 +32,13 @@ function setup() {
         header: null
       }
     },
-    tasks: []
+    tasks: [],
+    auth: {
+        isAuthenticated: false
+    },
+    version: {
+        modifiedDate: null
+    }
   }
   const store = configureStore()(state)
   return {

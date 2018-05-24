@@ -21,25 +21,25 @@ const Task: TaskSFC = ({ onClick, onToggleClick, onDeleteClick, onEditClick, act
 
     const completeButton = active && !completed ? (
         <button className="action complete" onClick={onToggleClick} aria-label="Complete task" title="Complete">
-            <Icon name={Icons.Names.Complete} />
+            <Icon name={Icons.Name.Complete} />
         </button>
     ) : null
 
     const revertButton = active && completed ? (
         <button className="action revert" onClick={onToggleClick} aria-label="Revert completion" title="Revert">
-            <Icon name={Icons.Names.Revert} />
+            <Icon name={Icons.Name.Revert} />
         </button>
     ) : null
 
     const editButton = active ? (
         <button className="action edit" onClick={onEditClick} aria-label="Edit task" title="Edit">
-            <Icon name={Icons.Names.Edit} />
+            <Icon name={Icons.Name.Edit} />
         </button>
     ) : null
 
     const deleteButton = active && completed ? (
         <button className="action delete" onClick={onDeleteClick} aria-label="Remove task" title="Remove">
-            <Icon name={Icons.Names.Delete} />
+            <Icon name={Icons.Name.Delete} />
         </button>
     ) : null
 

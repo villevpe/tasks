@@ -41,3 +41,9 @@ export const deleteAllTasks = (): Tasks.Action => ({
     type: Tasks.ActionTypes.RemoveAllTasks,
     payload: {}
 })
+
+export const setAllTasks = (tasks: Tasks.Task[]): Tasks.Action => ({
+    type: Tasks.ActionTypes.SetAllTasks,
+    payload: {},
+    fullState: tasks
+})

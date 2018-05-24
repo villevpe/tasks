@@ -4,7 +4,7 @@ describe('Filter Actions', () => {
   let action: Filters.Action = null
 
   describe('setFilter', () => {
-    const filter = Filters.Types.ShowAll
+    const filter = Filters.Types.ShowCompleted
 
     beforeEach(() => action = Filters.Actions.setFilter(filter))
 

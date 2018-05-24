@@ -40,6 +40,9 @@ const reducer: Reducer<Tasks.State> = (state = initialState, action: Tasks.Actio
         case Tasks.ActionTypes.RemoveAllTasks:
             return initialState
 
+        case Tasks.ActionTypes.SetAllTasks:
+            return action.fullState
+
         default:
             return state
     }
