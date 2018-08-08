@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect, Dispatch } from 'react-redux'
 import Task from './Task/Task'
-import { Tasks, Filters, Application, Modal } from '../../state'
+import { Tasks, Filters, Application, Modal, Version } from '../../state'
 import './TaskList.scss'
 
 export type TaskListDispatch = {
@@ -56,8 +56,14 @@ const mapStateToProps = (state: Application.Store): TaskListState => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<Tasks.Action>): TaskListDispatch => ({
     onTaskClick: (id: string) => dispatch(Tasks.Actions.activateTask(id)),
-    onDeleteClick: (id: string) => dispatch(Tasks.Actions.deleteTask(id)),
-    onToggleClick: (id: string) => dispatch(Tasks.Actions.toggleTask(id)),
+    onDeleteClick: (id: string) => {
+        dispatch(Version.Actions.updateVersion(new Date()))
+        dispatch(Tasks.Actions.deleteTask(id))
+    },
+    onToggleClick: (id: string) => {
+        dispatch(Version.Actions.updateVersion(new Date()))
+        dispatch(Tasks.Actions.toggleTask(id))
+    },
     onEditClick: (task: Tasks.Task) => dispatch(Modal.Actions.openEditModal(task)),
 })
 

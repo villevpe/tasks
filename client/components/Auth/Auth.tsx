@@ -10,6 +10,7 @@ import { GoogleFileProvider } from '../../state/utils/file/googleDrive'
 import { FileProvider } from '../../state/utils/file/provider'
 import { GoogleApi } from '../../state/utils/types/google'
 import { store, storage } from '../../state/store'
+import { getEnvironmentVariable, Env } from '../../state/utils/environment'
 
 type ConnectedAuth = Auth.State & DispatchProp<{}>
 
@@ -37,12 +38,13 @@ class AuthComponent extends React.Component<ConnectedAuth> {
     constructor(props: ConnectedAuth) {
         super(props)
         this.dispatch = this.props.dispatch
+        this.uploadStateToRemote = debounce(this.uploadStateToRemote, 500)
     }
 
     componentDidMount() {
         this.authProvider = new GoogleAuth({
-            apiKey: '',
-            clientId: '',
+            apiKey: getEnvironmentVariable<string>(Env.GoogleApiKey),
+            clientId: getEnvironmentVariable<string>(Env.GoogleClientID),
             scope: 'https://www.googleapis.com/auth/drive.appfolder',
             discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
         })
@@ -56,7 +58,7 @@ class AuthComponent extends React.Component<ConnectedAuth> {
 
                     // Upload new state to google drive
                     if (this.doSync && this.isStateChanged(this.lastState, state)) {
-                        debounce(this.uploadStateToRemote.bind(this, state), 5000)()
+                        this.uploadStateToRemote(state)
                     }
                     this.lastState = state
                 })
@@ -97,10 +99,12 @@ class AuthComponent extends React.Component<ConnectedAuth> {
 
     // Check if only the meaningful state has changed (i.e. tasks)
     private isStateChanged(last: Application.Store, current: Application.Store) {
+        const checksum = ({ id, text, completed }: Tasks.Task) => [id, text, completed].join('')
+
         if (!last) {
             return false
         }
-        return current.tasks.map(({ id }) => id).join('') !== last.tasks.map(({ id }) => id).join('')
+        return current.tasks.map(checksum).join('') !== last.tasks.map(checksum).join('')
     }
 
     private initAuth() {
@@ -164,13 +168,14 @@ class AuthComponent extends React.Component<ConnectedAuth> {
     private hydrateState(localState: Application.Store, remoteState: Application.Store) {
 
         if (this.shouldUpdateState(localState, remoteState, true)) {
+            console.info('Got fresher data from the server, hydrating tasks')
             const tasks = remoteState && remoteState.tasks
-            const filter = remoteState.filters && remoteState.filters.filter as Filters.Types
-            if (tasks.length > 0) {
-                this.dispatch(Tasks.Actions.setAllTasks(remoteState.tasks))
-            }
-            if (filter) {
-                this.dispatch(Filters.Actions.setFilter(filter))
+            if (tasks) {
+                this.doSync = false
+                this.dispatch(Tasks.Actions.setAllTasks(tasks))
+                // Use local state for the filter because it would be odd if it would change
+                this.dispatch(Filters.Actions.setFilter(localState.filters.filter))
+                this.doSync = true
             }
         }
     }
@@ -203,16 +208,12 @@ class AuthComponent extends React.Component<ConnectedAuth> {
 
     private shouldUpdateState(localState: Application.Store, remoteState: Application.Store, fromRemote: boolean) {
 
-        if (!localState.version || !localState.version.modifiedDate) {
-            return false
-        }
-
-        if (!remoteState.version || !remoteState.version.modifiedDate) {
-            return true
+        if (!remoteState.version) {
+            return fromRemote
         }
 
         if (this.isStateChanged(localState, remoteState)) {
-            const local = localState.version.modifiedDate.getTime()
+            const local = new Date(localState.version.modifiedDate).getTime()
             const remote = new Date(remoteState.version.modifiedDate).getTime()
 
             if (fromRemote) {
@@ -221,7 +222,7 @@ class AuthComponent extends React.Component<ConnectedAuth> {
                 return local >= remote
             }
         }
-        return false
+        return !fromRemote
     }
 
     private loginUser() {
