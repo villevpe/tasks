@@ -2,6 +2,7 @@ import * as React from 'react'
 import { FilterList } from '../FilterList/FilterList'
 import { TaskList } from '../TaskList/TaskList'
 import { Modal } from '../Modal/Modal'
+import { Authentication } from '../Auth/Auth'
 import { Button, ButtonProps } from '../Button/Button'
 import { Modal as ModalState, Filters, Application } from '../../state/'
 import { Icons } from '../Icon/Icon'
@@ -12,8 +13,8 @@ const addTaskButton: ButtonProps = {
     className: 'add-task',
     label: 'Add task',
     icon: {
-        name: Icons.Names.Add,
-        size: Icons.Sizes.Large
+        name: Icons.Name.Add,
+        size: Icons.Size.Large
     },
     action: ModalState.Actions.openAddTaskModal
 }
@@ -24,9 +25,9 @@ const AppComponent: React.SFC<Filters.State> = (filters) => {
         label: 'Toggle filters',
         action: Filters.Actions.setListVisibility,
         icon: {
-            name: Icons.Names.Filter,
-            size: Icons.Sizes.Medium,
-            color: filters.open ? Icons.Colors.White : Icons.Colors.Gray
+            name: Icons.Name.Filter,
+            size: Icons.Size.Medium,
+            color: filters.open ? Icons.Color.White : Icons.Color.Gray
         }
     }
     return (
@@ -35,7 +36,10 @@ const AppComponent: React.SFC<Filters.State> = (filters) => {
             <div className="app-container">
                 <header>
                     <h1>Tasks</h1>
-                    <Button {...filterButton} />
+                    <div className="action-wrap">
+                        <Button {...filterButton} />
+                        <Authentication />
+                    </div>
                 </header>
                 <FilterList />
                 <TaskList />

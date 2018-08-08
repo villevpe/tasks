@@ -2,7 +2,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const env = require('dotenv').config()
 
+const environmentVariables = Object
+    .entries(env.parsed)
+    .reduce((acc, [key, value]) => {
+        acc[key] = JSON.stringify(value)
+        return acc
+    }, {})
 
 module.exports = {
     output: {
@@ -37,6 +45,12 @@ module.exports = {
         new ExtractTextPlugin({
             filename: 'style.css',
             allChunks: true
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+                ...environmentVariables
+            }
         })
     ],
     devtool: false,

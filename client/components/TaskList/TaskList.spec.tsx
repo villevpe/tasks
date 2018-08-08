@@ -26,7 +26,7 @@ describe('<VisibleTaskList />', () => {
       }
     ],
     filters: {
-      filter: Filters.Types.ShowAll
+      filter: Filters.Types.ShowActive
     }
   }
   let { wrapper, store } = setup(state)

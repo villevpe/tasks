@@ -11,7 +11,6 @@ export namespace Filters {
 
   export enum Types {
     ShowCompleted = 'ShowCompleted',
-    ShowAll = 'ShowAll',
     ShowActive = 'ShowActive'
   }
 

@@ -1,29 +1,30 @@
-import { Store } from 'react-redux'
-import { createStore, StoreEnhancer } from 'redux'
+import thunk from 'redux-thunk'
+import { createStore, StoreEnhancer, compose } from 'redux'
 import { Application } from './index'
 import { Storage } from './utils/storage'
-
-const store: Store<{}> = initStore()
+import { applyMiddleware } from 'redux'
 
 interface WindowWithDevTools extends Window {
     __REDUX_DEVTOOLS_EXTENSION__: () => StoreEnhancer<{}>
 }
 
-export { store }
+const storage = new Storage<Application.Store | {}>('tasksState')
 
-function initStore(): Store<{}> {
-    const storage = new Storage<Application.Store | {}>('tasksState')
+const devTool = typeof window !== 'undefined'
+    && (window as WindowWithDevTools).__REDUX_DEVTOOLS_EXTENSION__
+    && (window as WindowWithDevTools).__REDUX_DEVTOOLS_EXTENSION__()
 
-    const devTool =  typeof window !== 'undefined' && (window as WindowWithDevTools).__REDUX_DEVTOOLS_EXTENSION__
+const enhancer: StoreEnhancer<{}> = compose(
+    ...[applyMiddleware(thunk), devTool].filter(Boolean)
+)
 
-    const newStore = createStore(
-        Application.Reducer,
-        storage.load(),
-        devTool ? devTool() : undefined
-    )
+const store = createStore(
+    // Root reducer
+    Application.Reducer,
+    // Initial state
+    storage.load(),
+    // Enhancers
+    enhancer
+)
 
-    newStore.subscribe(() => {
-        storage.save(newStore.getState())
-    })
-    return newStore
-}
+export { store, storage }

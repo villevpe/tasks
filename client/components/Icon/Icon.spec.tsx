@@ -4,7 +4,7 @@ import { Icon, Icons } from './Icon'
 
 describe('<Icon />', () => {
   const props: Icons.Props = {
-    name: Icons.Names.Add
+    name: Icons.Name.Add
   }
   const wrapper = shallow(<Icon {...props} />)
 

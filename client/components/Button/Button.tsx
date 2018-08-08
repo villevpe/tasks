@@ -9,18 +9,20 @@ export interface ButtonProps {
     action: Function
     text?: string
     icon?: Icons.Props
+    useDispatch?: boolean
 }
 
 type ConnectedButton = ButtonProps & DispatchProp<{}>
 
-const ButtonComponent: React.SFC<ConnectedButton> = ({ text, className, label, action, icon, dispatch }) => {
+const ButtonComponent: React.SFC<ConnectedButton> = (props) => {
+    const { text, className, label, action, icon, dispatch, useDispatch = true } = props
     return (
         <button
             type="button"
             title={label}
             aria-label={label}
             className={`btn ${className}`}
-            onClick={() => dispatch(action())}
+            onClick={() => useDispatch ? dispatch(action()) : action()}
         >
             {icon ? <Icon {...icon} /> : null}
             {text ? <span>{text}</span> : null}

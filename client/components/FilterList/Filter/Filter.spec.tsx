@@ -8,14 +8,14 @@ import { Filters } from '../../../state'
 describe('<VisibleTaskList />', () => {
 
   it('should render child node', () => {
-    let { wrapper } = setup({ filters: { filter: Filters.Types.ShowAll } })
+    let { wrapper } = setup({ filters: { filter: Filters.Types.ShowCompleted } })
     expect(wrapper.find('button').text()).toEqual('Test')
   })
 
   describe('handleClick', () => {
 
     it('should dispatch setFilter when filter is not active', () => {
-      let { wrapper, store } = setup({ filters: { filter: Filters.Types.ShowAll } })
+      let { wrapper, store } = setup({ filters: { filter: Filters.Types.ShowCompleted } })
       wrapper.find('button').simulate('click')
       const actions = store.getActions()
       expect(actions.find(action => action.type === Filters.ActionTypes.SetFilter)).toBeTruthy()

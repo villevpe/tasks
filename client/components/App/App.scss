@@ -98,4 +98,10 @@ header {
             width: 32px;
         }
     }
+    .action-wrap {
+        display: flex;
+        flex-direction: row;
+        width: 30%;
+        justify-content: space-around;
+    }
 }

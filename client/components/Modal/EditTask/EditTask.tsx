@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Dispatch, connect } from 'react-redux'
-import { Tasks, Modal } from '../../../state'
+import { Tasks, Modal, Version } from '../../../state'
 import './EditTask.scss'
 
 interface EditTaskComponentProps {
@@ -33,6 +33,7 @@ let EditTaskComponent: React.SFC<EditTaskComponentProps> = ({ dispatch, task }) 
         if (!input.value.trim()) {
             return
         }
+        dispatch(Version.Actions.updateVersion(new Date()))
         dispatch(Tasks.Actions.changeTask(task.id, {
             ...task,
             text: input.value,
