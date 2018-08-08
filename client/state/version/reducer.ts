@@ -10,7 +10,7 @@ const reducer: Reducer<Version.State> = (state = { modifiedDate: null }, action:
             }
         default:
             return {
-                modifiedDate: new Date()
+                modifiedDate: state.modifiedDate
             }
     }
 }

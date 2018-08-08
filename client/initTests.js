@@ -4,6 +4,8 @@ global.requestAnimationFrame = (cb) => {
   setTimeout(cb, 0)
 }
 
+process.env.NODE_ENV = 'test';
+
 const Enzyme = require('enzyme');
 const EnzymeAdapter = require('enzyme-adapter-react-16');
 

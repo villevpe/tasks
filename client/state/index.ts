@@ -5,7 +5,7 @@ import { Modal } from './modal'
 import { Auth } from './auth'
 import { Version } from './version'
 
-export { Tasks, Modal, Filters, Auth }
+export { Tasks, Modal, Filters, Auth, Version }
 
 export namespace Application {
 
