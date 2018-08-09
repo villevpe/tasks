@@ -47,9 +47,8 @@ module.exports = {
             allChunks: true
         }),
         new webpack.DefinePlugin({
-            'process.env': {
+            'ENV': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
-                ...process.env,
                 ...environmentVariables
             }
         })

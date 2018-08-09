@@ -4,13 +4,15 @@ export enum Env {
     GoogleClientID = 'GOOGLE_CLIENT_ID'
 }
 
-const environmentVariables = process.env
+// Custom environment variables from local envs
+declare const ENV: {[i: string]: {}}
 
 export function getEnvironmentVariable<T>(key: Env) {
-    const value = environmentVariables[key] as {}
-    if (environmentVariables.NODE_ENV === 'test') {
+    if (process.env.NODE_ENV === 'test') {
         return ''
     }
+    const value = (ENV[key] || process.env[key]) as {}
+
     if (!value) {
         throw new Error(`Couldn't find environment variable ${key}`)
     }
