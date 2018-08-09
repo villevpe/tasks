@@ -5,12 +5,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const env = require('dotenv').config()
 
-const environmentVariables = env && env.parsed ? Object
-    .entries(env.parsed)
-    .reduce((acc, [key, value]) => {
-        acc[key] = JSON.stringify(value)
-        return acc
-    }, {}) : {}
+const createListFromObject = (obj) => Object
+.entries(obj)
+.reduce((acc, [key, value]) => {
+    acc[key] = JSON.stringify(value)
+    return acc
+}, {})
+
+const environmentVariables = env && env.parsed ? createListFromObject(env.parsed): {}
 
 module.exports = {
     output: {
@@ -49,7 +51,8 @@ module.exports = {
         new webpack.DefinePlugin({
             'ENV': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
-                ...environmentVariables
+                ...environmentVariables,
+                ...createListFromObject(process.env)
             }
         })
     ],
