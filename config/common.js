@@ -5,12 +5,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const env = require('dotenv').config()
 
-const environmentVariables = Object
+const environmentVariables = env && env.parsed ? Object
     .entries(env.parsed)
     .reduce((acc, [key, value]) => {
         acc[key] = JSON.stringify(value)
         return acc
-    }, {})
+    }, {}) : {}
 
 module.exports = {
     output: {

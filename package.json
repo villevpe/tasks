@@ -80,11 +80,12 @@
         "live": "node ./livereload.js \"npm run server\" ./build",
         "prestart:dev": "npm run clean && npm run build:server",
         "server": "node ./build/server.js",
-        "start": "npm run build:prod && npm run server",
+        "start": "npm run server",
         "start:dev": "run-p -n build:client:watch build:server:watch live",
         "test": "jest --coverage",
         "test:watch": "jest --watch --coverage",
-        "test:watch:all": "jest --watchAll --coverage"
+        "test:watch:all": "jest --watchAll --coverage",
+        "heroku-postbuild": "npm run build:prod"
     },
     "pre-commit": [
         "lint",
