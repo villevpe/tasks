@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { connect, DispatchProp } from 'react-redux'
 import { Icon, Icons } from '../Icon/Icon'
 import './Button.scss'

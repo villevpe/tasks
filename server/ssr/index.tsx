@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Request, Response } from 'express'
 import { createStore } from 'redux'
 import { renderToNodeStream } from 'react-dom/server'

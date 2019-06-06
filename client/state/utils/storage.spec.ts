@@ -1,6 +1,18 @@
 import { Storage } from './storage'
 
+const MockStorage = new class {
+  store = {}
+  setItem = (key: string, val: string) => (this.store[key] = val)
+  getItem = (key: string) => this.store[key]
+  removeItem = (key: string) => { delete this.store[key] }
+  clear = () => (this.store = {})
+}()
+
 describe('Storage', () => {
+  Object.defineProperty(window, 'localStorage', {
+    value: MockStorage,
+    writable: true
+  })
   const key = 'test'
   let _error: Console['error']
   let storage = new Storage<{}>(key)
@@ -34,6 +46,7 @@ describe('Storage', () => {
     })
 
     it('should set value to localStorage after debounce', (done) => {
+      spyOn(window.localStorage, 'setItem')
       const data = { data: 'd' }
       storage.save(data)
       setTimeout(expects, 1000)
@@ -58,7 +71,7 @@ describe('Storage', () => {
     })
 
     it('failure should return empty object', () => {
-      window.localStorage.__STORE__[key] = {}
+      window.localStorage.setItem(key, '{}')
       expect(storage.load()).toEqual({})
     })
   })

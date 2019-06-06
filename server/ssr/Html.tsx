@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 // tslint:disable:jsx-self-close
 const Html: React.SFC<{}> = (props) => {

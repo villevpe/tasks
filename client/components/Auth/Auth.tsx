@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { connect, DispatchProp, Dispatch } from 'react-redux'
 const debounce = require('debounce')
 import { Application, Auth, Tasks, Filters } from '../../state'

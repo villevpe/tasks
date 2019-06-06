@@ -1,113 +1,111 @@
 {
-    "name": "tasks",
-    "version": "0.1.0",
-    "description": "Simple task editor app",
-    "author": "villevpe",
-    "private": true,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/villevpe/tasks.git"
-    },
-    "licence": "MIT",
-    "dependencies": {
-        "classnames": "^2.2.6",
-        "compression": "^1.7.4",
-        "debounce": "^1.2.0",
-        "express": "^4.17.1",
-        "npm-run-all": "^4.1.5",
-        "react": "^16.8.6",
-        "react-dom": "^16.8.6",
-        "react-redux": "^5.1.1",
-        "redux": "^3.7.2",
-        "redux-actions": "^2.6.5",
-        "redux-thunk": "^2.3.0",
-        "typescript": "^2.9.2",
-        "uuid": "^3.3.2"
-    },
-    "devDependencies": {
-        "@types/classnames": "^2.2.8",
-        "@types/compression": "^0.0.35",
-        "@types/debounce": "^1.2.0",
-        "@types/enzyme": "^3.9.3",
-        "@types/enzyme-adapter-react-16": "^1.0.5",
-        "@types/express": "^4.17.0",
-        "@types/jasmine": "^2.8.16",
-        "@types/jest": "^22.2.3",
-        "@types/node": "^9.6.49",
-        "@types/react": "^16.8.19",
-        "@types/react-dom": "^16.8.4",
-        "@types/react-redux": "^5.0.21",
-        "@types/redux-actions": "^2.6.1",
-        "@types/redux-mock-store": "^0.0.13",
-        "@types/uuid": "^3.4.4",
-        "autoprefixer": "^9.6.0",
-        "css-loader": "^2.1.1",
-        "dotenv": "^5.0.1",
-        "dotenv-webpack": "^1.7.0",
-        "env-cmd": "^8.0.2",
-        "enzyme": "^3.10.0",
-        "enzyme-adapter-react-16": "^1.14.0",
-        "extract-text-webpack-plugin": "^3.0.2",
-        "file-loader": "^1.1.11",
-        "identity-obj-proxy": "^3.0.0",
-        "is-uuid": "^1.0.2",
-        "jest": "^24.8.0",
-        "jest-localstorage-mock": "^2.4.0",
-        "node-sass": "^4.12.0",
-        "null-loader": "^0.1.1",
-        "postcss-loader": "^2.1.6",
-        "pre-commit": "^1.2.2",
-        "redux-mock-store": "^1.5.3",
-        "rimraf": "^2.6.3",
-        "sass-loader": "^6.0.7",
-        "style-loader": "^0.19.1",
-        "ts-jest": "^24.0.2",
-        "ts-loader": "^3.5.0",
-        "tslint": "^5.17.0",
-        "tslint-loader": "^3.5.4",
-        "tslint-react": "^3.6.0",
-        "webpack": "^3.12.0",
-        "webpack-merge": "^4.2.1"
-    },
-    "scripts": {
-        "build:client": "webpack --color --config ./config/client.js",
-        "build:client:watch": "webpack --color --watch --config ./config/client.js",
-        "build:server": "webpack --color --config ./config/server.js",
-        "build:server:watch": "webpack --color --watch --config ./config/server.js",
-        "build:dev": "npm run build:client && npm run build:server",
-        "build:prod": "npm run build:client -- -p && npm run build:server -- -p",
-        "clean": "rimraf ./build/*",
-        "lint": "tslint -p ./tsconfig.json",
-        "live": "node ./livereload.js \"npm run server\" ./build",
-        "prestart:dev": "npm run clean && npm run build:server",
-        "server": "node ./build/server.js",
-        "start": "npm run server",
-        "start:dev": "run-p -n build:client:watch build:server:watch live",
-        "test": "jest --coverage",
-        "test:watch": "jest --watch --coverage",
-        "test:watch:all": "jest --watchAll --coverage",
-        "heroku-postbuild": "npm run build:prod"
-    },
-    "pre-commit": [
-        "lint",
-        "test"
+  "name": "tasks",
+  "version": "0.1.0",
+  "description": "Simple task editor app",
+  "author": "villevpe",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/villevpe/tasks.git"
+  },
+  "licence": "MIT",
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "compression": "^1.7.4",
+    "debounce": "^1.2.0",
+    "express": "^4.17.1",
+    "npm-run-all": "^4.1.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^5.1.1",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.6.5",
+    "redux-thunk": "^2.3.0",
+    "typescript": "^2.9.2",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.8",
+    "@types/compression": "^0.0.35",
+    "@types/debounce": "^1.2.0",
+    "@types/enzyme": "^3.9.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/express": "^4.17.0",
+    "@types/jasmine": "^2.8.16",
+    "@types/jest": "^22.2.3",
+    "@types/node": "^9.6.49",
+    "@types/react": "^16.8.19",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-redux": "^5.0.21",
+    "@types/redux-actions": "^2.6.1",
+    "@types/redux-mock-store": "^0.0.13",
+    "@types/uuid": "^3.4.4",
+    "autoprefixer": "^9.6.0",
+    "css-loader": "^2.1.1",
+    "dotenv": "^5.0.1",
+    "dotenv-webpack": "^1.7.0",
+    "env-cmd": "^8.0.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "identity-obj-proxy": "^3.0.0",
+    "is-uuid": "^1.0.2",
+    "jest": "^24.8.0",
+    "node-sass": "^4.12.0",
+    "null-loader": "^0.1.1",
+    "postcss-loader": "^2.1.6",
+    "pre-commit": "^1.2.2",
+    "redux-mock-store": "^1.5.3",
+    "rimraf": "^2.6.3",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.19.1",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^3.5.0",
+    "tslint": "^5.17.0",
+    "tslint-loader": "^3.5.4",
+    "tslint-react": "^3.6.0",
+    "webpack": "^3.12.0",
+    "webpack-merge": "^4.2.1"
+  },
+  "scripts": {
+    "build:client": "webpack --color --config ./config/client.js",
+    "build:client:watch": "webpack --color --watch --config ./config/client.js",
+    "build:server": "webpack --color --config ./config/server.js",
+    "build:server:watch": "webpack --color --watch --config ./config/server.js",
+    "build:dev": "npm run build:client && npm run build:server",
+    "build:prod": "npm run build:client -- -p && npm run build:server -- -p",
+    "clean": "rimraf ./build/*",
+    "lint": "tslint -p ./tsconfig.json",
+    "live": "node ./livereload.js \"npm run server\" ./build",
+    "prestart:dev": "npm run clean && npm run build:server",
+    "server": "node ./build/server.js",
+    "start": "npm run server",
+    "start:dev": "run-p -n build:client:watch build:server:watch live",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch --coverage",
+    "test:watch:all": "jest --watchAll --coverage",
+    "heroku-postbuild": "npm run build:prod"
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
     ],
-    "jest": {
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ],
-        "moduleNameMapper": {
-            "\\.(css|scss)$": "identity-obj-proxy"
-        },
-        "transform": {
-            "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-        },
-        "testRegex": "./client/.*\\.spec.(ts|tsx|js)$",
-        "setupTestFrameworkScriptFile": "<rootDir>/client/initTests.js",
-        "setupFiles": [
-            "jest-localstorage-mock"
-        ]
-    }
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "testRegex": "./client/.*\\.spec.(ts|tsx|js)$",
+    "setupFilesAfterEnv": [
+      "<rootDir>/client/initTests.js"
+    ]
+  }
 }

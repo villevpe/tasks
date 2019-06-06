@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Filter } from './Filter/Filter'
 import { Filters, Application } from '../../state'
 import { connect } from 'react-redux'

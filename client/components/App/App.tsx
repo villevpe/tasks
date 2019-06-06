@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { FilterList } from '../FilterList/FilterList'
 import { TaskList } from '../TaskList/TaskList'
 import { Modal } from '../Modal/Modal'

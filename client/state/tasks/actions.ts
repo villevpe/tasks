@@ -1,4 +1,5 @@
-import * as uuid from 'uuid/v4'
+
+import uuid from 'uuid/v4'
 import { Tasks } from './index'
 
 export const addTask = (text: string): Tasks.Action => {

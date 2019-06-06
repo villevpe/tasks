@@ -1,5 +1,5 @@
-import * as express from 'express'
-import * as compression from 'compression'
+import express from 'express'
+import compression from 'compression'
 import { networkInterfaces } from 'os'
 import { ssr } from './ssr'
 

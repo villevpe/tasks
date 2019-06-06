@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Dispatch, connect } from 'react-redux'
 import { Tasks, Modal, Version } from '../../../state'
 import './AddTask.scss'

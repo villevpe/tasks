@@ -1,5 +1,5 @@
-import * as React from 'react'
-import * as classNames from 'classnames'
+import React from 'react'
+import classNames from 'classnames'
 import { Icons, Icon } from '../../Icon/Icon'
 import './Task.scss'
 import { Tasks } from '../../../state'
