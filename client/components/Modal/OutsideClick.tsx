@@ -25,7 +25,7 @@ export class OutsideClick extends React.Component<OutsideClickProps, {}> {
   }
 
   componentDidMount() {
-    this.element = ReactDOM.findDOMNode(this)
+    this.element = ReactDOM.findDOMNode(this) as Element
 
     this.element.addEventListener('click', this.eventHandlers.component)
     document.addEventListener('click', this.eventHandlers.document)
